@@ -1,0 +1,513 @@
+/* =========================
+   LIQUID GLASS CARD
+========================= */
+
+
+.glass-card {
+
+  position:relative;
+
+  overflow:hidden;
+
+
+  background:
+
+  var(--glass-bg);
+
+
+
+  border:
+
+  1px solid var(--glass-border);
+
+
+
+  border-radius:
+
+  var(--radius-lg);
+
+
+
+  backdrop-filter:
+
+  blur(var(--glass-blur));
+
+
+
+  -webkit-backdrop-filter:
+
+  blur(var(--glass-blur));
+
+
+
+  box-shadow:
+
+  var(--shadow-card),
+
+  inset 0 1px rgba(255,255,255,.18);
+
+
+
+  transition:
+
+  var(--transition);
+
+
+
+  will-change:transform;
+
+}
+
+
+
+.glass-card:hover{
+
+
+  transform:
+
+  translateY(-8px);
+
+
+
+  background:
+
+  var(--glass-bg-hover);
+
+
+
+  border-color:
+
+  rgba(255,255,255,.25);
+
+
+
+  box-shadow:
+
+
+  0 35px 100px rgba(0,0,0,.55),
+
+  0 0 70px var(--violet-glow);
+
+
+
+}
+
+
+
+
+
+
+
+/* =========================
+   AI CARD
+========================= */
+
+
+.ai-card {
+
+
+  position:relative;
+
+  overflow:hidden;
+
+
+
+  border:
+
+  1px solid rgba(34,211,238,.15);
+
+
+
+  background:
+
+  rgba(255,255,255,.05);
+
+
+
+  backdrop-filter:
+
+  blur(25px);
+
+
+
+  -webkit-backdrop-filter:
+
+  blur(25px);
+
+
+
+  box-shadow:
+
+  var(--shadow-card);
+
+
+
+}
+
+
+
+
+
+
+
+/* =========================
+   GLASS SHINE EFFECT
+========================= */
+
+
+.glass-shine{
+
+
+  position:absolute;
+
+  inset:0;
+
+
+
+  background:
+
+
+  linear-gradient(
+
+  135deg,
+
+  rgba(255,255,255,.22),
+
+  transparent 30%,
+
+  transparent 70%,
+
+  rgba(255,255,255,.08)
+
+  );
+
+
+
+  pointer-events:none;
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================
+   LIQUID AI BUTTON
+========================= */
+
+
+.liquid-btn{
+
+
+  position:relative;
+
+  overflow:hidden;
+
+
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+
+
+  padding:
+
+  15px 34px;
+
+
+
+  border:none;
+
+
+
+  border-radius:
+
+  var(--radius-md);
+
+
+
+  color:white;
+
+
+
+  font-weight:800;
+
+  font-size:15px;
+
+
+
+  cursor:pointer;
+
+
+
+  background:
+
+
+  linear-gradient(
+
+  135deg,
+
+  var(--primary),
+
+  #5b7cff,
+
+  var(--secondary)
+
+  );
+
+
+
+  box-shadow:
+
+
+  0 15px 40px rgba(124,58,237,.35);
+
+
+
+  transition:
+
+  var(--transition);
+
+
+
+  will-change:transform;
+
+
+}
+
+
+
+
+
+
+
+.liquid-btn:hover{
+
+
+  transform:
+
+
+  translateY(-5px)
+
+  scale(1.04);
+
+
+
+  box-shadow:
+
+
+  0 25px 70px rgba(124,58,237,.55),
+
+
+  0 0 80px rgba(0,212,255,.35);
+
+
+
+}
+
+
+
+
+
+
+
+.liquid-btn::before{
+
+
+  content:"";
+
+
+  position:absolute;
+
+
+  top:0;
+
+  left:-120%;
+
+
+
+  width:70%;
+
+  height:100%;
+
+
+
+  background:
+
+
+  linear-gradient(
+
+  90deg,
+
+  transparent,
+
+  rgba(255,255,255,.5),
+
+  transparent
+
+  );
+
+
+
+  transform:
+
+  skewX(-25deg);
+
+
+
+  transition:
+
+  .8s;
+
+
+
+}
+
+
+
+
+
+
+
+.liquid-btn:hover::before{
+
+
+  left:160%;
+
+
+}
+
+
+
+
+
+
+
+.liquid-btn span{
+
+
+  position:relative;
+
+  z-index:2;
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================
+   AI GLOW UTILITIES
+========================= */
+
+
+.ai-glow{
+
+
+  box-shadow:
+
+  0 0 70px var(--cyan-glow);
+
+
+}
+
+
+
+
+
+
+
+.ai-violet-glow{
+
+
+  box-shadow:
+
+  0 0 70px var(--violet-glow);
+
+
+}
+
+
+
+
+
+
+
+.ai-border{
+
+
+  border:
+
+  1px solid rgba(34,211,238,.25);
+
+
+}
+
+
+
+
+
+
+
+/* =========================
+   PERFORMANCE
+========================= */
+
+
+.gpu {
+
+
+  transform:translateZ(0);
+
+  will-change:transform,opacity;
+
+
+}
+
+
+
+
+
+
+
+/* =========================
+   MOBILE OPTIMIZATION
+========================= */
+
+
+@media(max-width:768px){
+
+
+
+.glass-card:hover{
+
+
+  transform:none;
+
+
+}
+
+
+
+.liquid-btn:hover{
+
+
+  transform:none;
+
+
+}
+
+
+
+}

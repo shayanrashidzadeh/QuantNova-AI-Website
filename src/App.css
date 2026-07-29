@@ -1,0 +1,36 @@
+function App() {
+  return (
+    <div
+      style={{
+        background: "#0f172a",
+        color: "white",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+        fontFamily: "Arial",
+      }}
+    >
+      <h1>🚀 Shayan AI Trader</h1>
+
+      <p>Welcome to Version 1.0</p>
+
+      <button
+        style={{
+          padding: "12px 25px",
+          borderRadius: "10px",
+          border: "none",
+          background: "#2563eb",
+          color: "white",
+          cursor: "pointer",
+          fontSize: "16px",
+        }}
+      >
+        Analyze Chart
+      </button>
+    </div>
+  );
+}
+
+export default App;

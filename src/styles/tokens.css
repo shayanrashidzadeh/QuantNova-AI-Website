@@ -1,0 +1,257 @@
+:root {
+
+
+  /* =========================
+     COLORS
+  ========================= */
+
+
+  --bg-primary:#050816;
+
+  --bg-secondary:#0b1120;
+
+  --bg-card:#020617;
+
+
+  --text-primary:#ffffff;
+
+  --text-secondary:#b8c2d9;
+
+  --text-muted:#64748b;
+
+
+
+  --primary:#7c3aed;
+
+  --secondary:#00d4ff;
+
+  --accent:#22d3ee;
+
+
+  --cyan:#22d3ee;
+
+  --violet:#7c3aed;
+
+  --blue:#3b82f6;
+
+
+
+  --success:#22c55e;
+
+  --warning:#f59e0b;
+
+  --danger:#ef4444;
+
+
+
+
+
+
+
+  /* =========================
+     GLASS SYSTEM
+  ========================= */
+
+
+  --glass-bg:
+
+  rgba(255,255,255,.06);
+
+
+
+  --glass-bg-hover:
+
+  rgba(255,255,255,.1);
+
+
+
+  --glass-border:
+
+  rgba(255,255,255,.15);
+
+
+
+  --glass-border-soft:
+
+  rgba(255,255,255,.08);
+
+
+
+  --glass-blur:
+
+  22px;
+
+
+
+
+
+
+
+  /* =========================
+     AI GLOW SYSTEM
+  ========================= */
+
+
+  --cyan-glow:
+
+  rgba(34,211,238,.45);
+
+
+
+  --violet-glow:
+
+  rgba(124,58,237,.45);
+
+
+
+  --blue-glow:
+
+  rgba(59,130,246,.35);
+
+
+
+
+
+
+
+  /* =========================
+     OPACITY SYSTEM
+  ========================= */
+
+
+  --opacity-soft:.05;
+
+  --opacity-card:.08;
+
+  --opacity-medium:.15;
+
+  --opacity-heavy:.25;
+
+
+
+
+
+
+
+  /* =========================
+     RADIUS SYSTEM
+  ========================= */
+
+
+  --radius-sm:16px;
+
+  --radius-md:22px;
+
+  --radius-lg:30px;
+
+  --radius-xl:40px;
+
+  --radius-full:999px;
+
+
+
+
+
+
+
+  /* =========================
+     SHADOW SYSTEM
+  ========================= */
+
+
+  --shadow-card:
+
+  0 25px 70px rgba(0,0,0,.45);
+
+
+
+  --shadow-heavy:
+
+  0 40px 120px rgba(0,0,0,.7);
+
+
+
+  --shadow-cyan:
+
+  0 0 70px rgba(34,211,238,.35);
+
+
+
+  --shadow-violet:
+
+  0 0 70px rgba(124,58,237,.35);
+
+
+
+
+
+
+
+  /* =========================
+     ANIMATION SYSTEM
+  ========================= */
+
+
+  --transition-fast:
+
+  .2s cubic-bezier(.16,.84,.44,1);
+
+
+
+  --transition:
+
+  .35s cubic-bezier(.16,.84,.44,1);
+
+
+
+  --transition-slow:
+
+  .8s cubic-bezier(.16,.84,.44,1);
+
+
+
+
+
+
+
+  /* =========================
+     LAYOUT
+  ========================= */
+
+
+  --container:
+
+  1280px;
+
+
+
+  --section-space:
+
+  140px;
+
+
+
+
+
+
+
+  /* =========================
+     Z INDEX SYSTEM
+  ========================= */
+
+
+  --z-background:0;
+
+  --z-content:10;
+
+  --z-navbar:50;
+
+  --z-overlay:100;
+
+  --z-loader:9999;
+
+  --z-cursor:99999;
+
+
+
+}
