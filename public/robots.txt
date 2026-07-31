@@ -1,0 +1,19 @@
+# QuantNova AI Robots.txt
+
+User-agent: *
+
+Allow: /
+
+# Block internal application files
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /dist/
+
+# Allow important assets
+Allow: /assets/
+Allow: /quantnova-logo.webp
+
+# Sitemap
+Sitemap: https://quantnovaai.com/sitemap.xml

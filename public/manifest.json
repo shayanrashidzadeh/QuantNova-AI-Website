@@ -1,44 +1,87 @@
 {
   "name": "QuantNova AI",
   "short_name": "QuantNova",
-
-  "description": "Next generation AI trading intelligence platform powered by artificial intelligence.",
+  "description": "Next-generation AI trading intelligence platform powered by artificial intelligence.",
+  "lang": "en",
+  "dir": "ltr",
 
   "start_url": "/",
+  "scope": "/",
 
   "display": "standalone",
-
-  "background_color": "#020617",
-
-  "theme_color": "#020617",
-
-
-  "icons": [
-
-    {
-      "src": "/quantnova-logo.webp",
-      "sizes": "192x192",
-      "type": "image/webp"
-    },
-
-    {
-      "src": "/quantnova-logo.webp",
-      "sizes": "512x512",
-      "type": "image/webp"
-    }
-
+  "display_override": [
+    "standalone",
+    "minimal-ui"
   ],
 
+  "orientation": "portrait-primary",
+
+  "background_color": "#020617",
+  "theme_color": "#020617",
 
   "categories": [
     "finance",
+    "business",
+    "productivity",
     "technology"
   ],
 
+  "icons": [
+    {
+      "src": "/quantnova-logo.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/quantnova-logo.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ],
 
-  "lang": "en",
+  "shortcuts": [
+    {
+      "name": "Launch QuantNova",
+      "short_name": "Launch",
+      "description": "Open QuantNova AI",
+      "url": "/#hero",
+      "icons": [
+        {
+          "src": "/quantnova-logo.webp",
+          "sizes": "192x192",
+          "type": "image/webp"
+        }
+      ]
+    },
+    {
+      "name": "Features",
+      "short_name": "Features",
+      "description": "Explore QuantNova AI features",
+      "url": "/#features",
+      "icons": [
+        {
+          "src": "/quantnova-logo.webp",
+          "sizes": "192x192",
+          "type": "image/webp"
+        }
+      ]
+    },
+    {
+      "name": "Performance",
+      "short_name": "Performance",
+      "description": "View QuantNova AI performance",
+      "url": "/#performance",
+      "icons": [
+        {
+          "src": "/quantnova-logo.webp",
+          "sizes": "192x192",
+          "type": "image/webp"
+        }
+      ]
+    }
+  ],
 
-  "dir": "ltr",
-
-  "scope": "/"
+  "prefer_related_applications": false
 }

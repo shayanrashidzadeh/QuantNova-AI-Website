@@ -1,48 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-
 import "./i18n";
 
-
 import App from "./App";
-
 
 import "./styles/tokens.css";
 import "./index.css";
 import "./styles/globals.css";
 
+const rootElement =
+  document.getElementById("root");
 
-
-
-
-
-const root = document.getElementById("root");
-
-
-
-
-
-if(!root){
-
-throw new Error(
-"Root element not found"
-);
-
+if (!rootElement) {
+  throw new Error(
+    'Root element with id "root" was not found.',
+  );
 }
 
-
-
-
-
-ReactDOM.createRoot(root).render(
-
-
-<React.StrictMode>
-
-<App />
-
-</React.StrictMode>
-
-
+ReactDOM.createRoot(rootElement).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
 );
