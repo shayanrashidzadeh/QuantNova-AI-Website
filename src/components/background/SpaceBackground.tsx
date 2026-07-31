@@ -1,55 +1,29 @@
 import { useMemo } from "react";
-import { motion } from "framer-motion";
 
 
 export default function SpaceBackground(){
 
 
-
   const stars = useMemo(()=>{
 
     return Array.from({
-      length:60
+      length:45
     }).map(()=>({
 
       x:Math.random()*100,
-
       y:Math.random()*100,
 
       size:
-        Math.random()>0.9
+        Math.random()>0.85
         ? 2
         : 1,
 
-      duration:
-        4 + Math.random()*5,
-
       delay:
-        Math.random()*4
+        Math.random()*5
 
     }));
 
   },[]);
-
-
-
-
-
-  const dust = useMemo(()=>{
-
-    return Array.from({
-      length:25
-    }).map(()=>({
-
-      x:Math.random()*100,
-
-      y:Math.random()*100
-
-    }));
-
-  },[]);
-
-
 
 
 
@@ -61,12 +35,13 @@ export default function SpaceBackground(){
       className="
       absolute
       inset-0
-      -z-0
+      z-0
       overflow-hidden
       pointer-events-none
       "
 
     >
+
 
 
 
@@ -88,49 +63,20 @@ export default function SpaceBackground(){
 
 
 
-
-      {/* CYAN NEBULA */}
-
-
-      <motion.div
-
-        animate={{
-
-          x:[
-            -40,
-            40,
-            -40
-          ],
-
-          scale:[
-            1,
-            1.08,
-            1
-          ]
-
-        }}
+      {/* CYAN GLOW */}
 
 
-        transition={{
-
-          duration:45,
-
-          repeat:Infinity,
-
-          ease:"easeInOut"
-
-        }}
-
+      <div
 
         className="
         absolute
-        left-[-180px]
-        top-[-100px]
-        h-[500px]
-        w-[500px]
+        -left-40
+        -top-32
+        h-[420px]
+        w-[420px]
         rounded-full
-        bg-cyan-500/10
-        blur-[120px]
+        bg-cyan-400/10
+        blur-[90px]
         "
 
       />
@@ -141,54 +87,23 @@ export default function SpaceBackground(){
 
 
 
-      {/* VIOLET NEBULA */}
+      {/* VIOLET GLOW */}
 
 
-      <motion.div
-
-
-        animate={{
-
-          x:[
-            40,
-            -40,
-            40
-          ],
-
-          scale:[
-            1,
-            1.1,
-            1
-          ]
-
-        }}
-
-
-        transition={{
-
-          duration:50,
-
-          repeat:Infinity,
-
-          ease:"easeInOut"
-
-        }}
-
-
+      <div
 
         className="
         absolute
-        right-[-180px]
-        bottom-[-100px]
-        h-[550px]
-        w-[550px]
+        -right-40
+        bottom-0
+        h-[450px]
+        w-[450px]
         rounded-full
-        bg-violet-600/10
-        blur-[130px]
+        bg-violet-500/10
+        blur-[100px]
         "
 
       />
-
 
 
 
@@ -203,38 +118,9 @@ export default function SpaceBackground(){
         stars.map((star,index)=>(
 
 
-          <motion.span
-
+          <span
 
             key={index}
-
-
-            animate={{
-
-              opacity:[
-                .2,
-                .8,
-                .2
-              ],
-
-              scale:[
-                1,
-                1.3,
-                1
-              ]
-
-            }}
-
-
-            transition={{
-
-              duration:star.duration,
-
-              delay:star.delay,
-
-              repeat:Infinity
-
-            }}
 
 
             style={{
@@ -245,16 +131,19 @@ export default function SpaceBackground(){
 
               width:`${star.size}px`,
 
-              height:`${star.size}px`
+              height:`${star.size}px`,
+
+              animationDelay:`${star.delay}s`
 
             }}
-
 
 
             className="
             absolute
             rounded-full
             bg-white
+            opacity-50
+            animate-pulse
             "
 
           />
@@ -269,120 +158,25 @@ export default function SpaceBackground(){
 
 
 
-      {/* DUST */}
+      {/* CENTER AI LIGHT */}
 
 
-      {
-        dust.map((item,index)=>(
-
-
-          <motion.span
-
-
-            key={index}
-
-
-            animate={{
-
-              opacity:[
-                .1,
-                .5,
-                .1
-              ]
-
-            }}
-
-
-            transition={{
-
-              duration:
-                4 + index % 3,
-
-              repeat:Infinity
-
-            }}
-
-
-
-            style={{
-
-              left:`${item.x}%`,
-
-              top:`${item.y}%`
-
-            }}
-
-
-
-            className="
-            absolute
-            h-px
-            w-px
-            rounded-full
-            bg-cyan-200
-            "
-
-          />
-
-
-        ))
-      }
-
-
-
-
-
-
-
-
-      {/* AI CORE */}
-
-
-      <motion.div
-
-
-        animate={{
-
-          scale:[
-            1,
-            1.1,
-            1
-          ],
-
-          opacity:[
-            .2,
-            .45,
-            .2
-          ]
-
-        }}
-
-
-        transition={{
-
-          duration:15,
-
-          repeat:Infinity,
-
-          ease:"easeInOut"
-
-        }}
-
-
+      <div
 
         className="
         absolute
         left-1/2
         top-[35%]
-        h-[360px]
-        w-[360px]
+        h-[300px]
+        w-[300px]
         -translate-x-1/2
         rounded-full
         bg-cyan-400/10
-        blur-[100px]
+        blur-[80px]
         "
 
       />
+
 
 
 
@@ -398,7 +192,7 @@ export default function SpaceBackground(){
         className="
         absolute
         inset-0
-        bg-[radial-gradient(circle_at_center,transparent_25%,#01030b_90%)]
+        bg-[radial-gradient(circle_at_center,transparent_20%,#01030b_90%)]
         "
 
       />
