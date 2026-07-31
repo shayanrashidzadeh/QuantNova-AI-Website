@@ -5,249 +5,330 @@ import spaceBg from "../../assets/backgrounds/space-bg.webp";
 
 
 
-
-
-
-
-
 export default function HeroBackground(){
 
 
+  const stars = useMemo(()=>{
 
+    return Array.from({
+      length:35
+    }).map(()=>({
 
+      x:Math.random()*100,
 
-const stars = useMemo(()=>{
+      y:Math.random()*100,
 
+      size:
+        Math.random()>0.85
+        ? 2
+        : 1,
 
-return Array.from({
+      duration:
+        5 + Math.random()*5,
 
-length:70
+      delay:
+        Math.random()*4
 
-}).map(()=>({
+    }));
 
+  },[]);
 
-x:Math.random()*100,
 
 
-y:Math.random()*100,
 
 
-size:
-Math.random()>0.9
-?
-2
-:
-1,
+  return (
 
+    <div
 
-duration:
-5+Math.random()*6,
+      className="
+      absolute
+      inset-0
+      z-0
+      overflow-hidden
+      pointer-events-none
+      "
 
+    >
 
-delay:
-Math.random()*5
 
 
-}));
 
+      <motion.img
 
-},[]);
+        src={spaceBg}
 
+        alt="QuantNova AI Galaxy"
 
 
+        initial={{
+          opacity:0,
+          scale:1.05
+        }}
 
 
+        animate={{
+          opacity:1,
+          scale:1
+        }}
 
 
+        transition={{
+          duration:1.8,
+          ease:"easeOut"
+        }}
 
 
-return(
+        className="
+        absolute
+        inset-0
+        h-full
+        w-full
+        object-cover
+        brightness-[0.3]
+        contrast-[1.15]
+        saturate-[1.2]
+        "
+      />
 
 
-<div
 
 
-className="
-absolute
-inset-0
-z-0
-overflow-hidden
-pointer-events-none
-"
 
 
->
 
+      <div
 
+        className="
+        absolute
+        inset-0
+        bg-gradient-to-b
+        from-[#01030b]/50
+        via-[#020617]/80
+        to-[#01030b]
+        "
 
+      />
 
 
 
 
 
 
-<motion.img
 
+      {/* AI CORE */}
 
-src={spaceBg}
 
+      <motion.div
 
-alt="QuantNova AI Galaxy"
+        animate={{
 
+          scale:[
+            1,
+            1.08,
+            1
+          ],
 
+          opacity:[
+            .25,
+            .45,
+            .25
+          ]
 
-initial={{
+        }}
 
-opacity:0,
 
-scale:1.08
+        transition={{
 
-}}
+          duration:12,
 
+          repeat:Infinity,
 
+          ease:"easeInOut"
 
-animate={{
+        }}
 
 
-opacity:1,
+        className="
+        absolute
+        left-1/2
+        top-[42%]
+        h-[380px]
+        w-[380px]
+        -translate-x-1/2
+        rounded-full
+        bg-cyan-400/20
+        blur-[90px]
+        "
 
-scale:1
+      />
 
 
-}}
 
 
 
-transition={{
 
 
-duration:2.5,
+      {/* VIOLET NEBULA */}
 
-ease:"easeOut"
 
+      <motion.div
 
-}}
+        animate={{
 
+          x:[
+            -40,
+            40,
+            -40
+          ]
 
+        }}
 
-className="
-absolute
-inset-0
-h-full
-w-full
-object-cover
-brightness-[0.28]
-contrast-[1.25]
-saturate-[1.35]
-will-change-transform
-"
 
+        transition={{
 
-/>
+          duration:35,
 
+          repeat:Infinity,
 
+          ease:"easeInOut"
 
+        }}
 
 
+        className="
+        absolute
+        left-[-120px]
+        top-20
+        h-[350px]
+        w-[350px]
+        rounded-full
+        bg-violet-600/20
+        blur-[100px]
+        "
 
+      />
 
 
 
 
 
 
-<div
 
+      {/* PURPLE LIGHT */}
 
-className="
-absolute
-inset-0
-bg-gradient-to-b
-from-[#01030b]/50
-via-[#020617]/80
-to-[#01030b]
-"
 
+      <motion.div
 
-/>
+        animate={{
 
+          scale:[
+            1,
+            1.08,
+            1
+          ],
 
+          opacity:[
+            .15,
+            .35,
+            .15
+          ]
 
+        }}
 
 
+        transition={{
 
+          duration:15,
 
+          repeat:Infinity
 
+        }}
 
 
+        className="
+        absolute
+        right-[-120px]
+        bottom-10
+        h-[330px]
+        w-[330px]
+        rounded-full
+        bg-purple-500/20
+        blur-[100px]
+        "
 
+      />
 
-{/* AI CORE */}
 
 
-<motion.div
 
 
-animate={{
 
 
-scale:[
 
-1,
+      {/* STARS */}
 
-1.15,
 
-1
+      {
+        stars.map((star,index)=>(
 
-],
+          <motion.span
 
+            key={index}
 
-opacity:[
 
-.25,
+            animate={{
 
-.55,
+              opacity:[
+                .2,
+                .8,
+                .2
+              ],
 
-.25
+              scale:[
+                1,
+                1.3,
+                1
+              ]
 
-]
+            }}
 
 
-}}
+            transition={{
 
+              duration:star.duration,
 
+              delay:star.delay,
 
-transition={{
+              repeat:Infinity
 
+            }}
 
-duration:15,
 
-repeat:Infinity,
+            style={{
 
-ease:"easeInOut"
+              left:`${star.x}%`,
 
+              top:`${star.y}%`,
 
-}}
+              width:`${star.size}px`,
 
+              height:`${star.size}px`
 
+            }}
 
-className="
-absolute
-left-1/2
-top-[42%]
-h-[500px]
-w-[500px]
--translate-x-1/2
-rounded-full
-bg-cyan-400/20
-blur-[150px]
-will-change-transform
-"
 
+            className="
+            absolute
+            rounded-full
+            bg-white
+            "
 
-/>
+          />
 
 
+        ))
+      }
 
 
 
@@ -256,354 +337,72 @@ will-change-transform
 
 
 
+      {/* ENERGY BEAM */}
 
 
-{/* VIOLET NEBULA */}
+      <motion.div
 
+        animate={{
 
+          x:[
+            "-40%",
+            "140%"
+          ],
 
-<motion.div
+          opacity:[
+            0,
+            1,
+            0
+          ]
 
+        }}
 
-animate={{
 
+        transition={{
 
-x:[
+          duration:14,
 
--60,
+          repeat:Infinity,
 
-60,
+          ease:"easeInOut"
 
--60
+        }}
 
-]
 
+        className="
+        absolute
+        top-[35%]
+        h-[2px]
+        w-72
+        rotate-12
+        bg-gradient-to-r
+        from-transparent
+        via-cyan-300
+        to-transparent
+        "
 
-}}
+      />
 
 
 
-transition={{
 
 
-duration:45,
 
-repeat:Infinity,
 
-ease:"easeInOut"
+      <div
 
+        className="
+        absolute
+        inset-0
+        bg-[radial-gradient(circle_at_center,transparent_20%,#01030b_100%)]
+        "
 
-}}
+      />
 
 
 
-className="
-absolute
-left-[-180px]
-top-20
-h-[450px]
-w-[450px]
-rounded-full
-bg-violet-600/20
-blur-[160px]
-will-change-transform
-"
+    </div>
 
-
-/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/* PURPLE LIGHT */}
-
-
-
-<motion.div
-
-
-animate={{
-
-
-scale:[
-
-1,
-
-1.15,
-
-1
-
-],
-
-
-opacity:[
-
-.15,
-
-.4,
-
-.15
-
-]
-
-
-}}
-
-
-
-transition={{
-
-
-duration:18,
-
-repeat:Infinity
-
-
-}}
-
-
-
-className="
-absolute
-right-[-160px]
-bottom-10
-h-[430px]
-w-[430px]
-rounded-full
-bg-purple-500/20
-blur-[160px]
-will-change-transform
-"
-
-
-/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/* STARS */}
-
-
-
-{
-
-
-stars.map((star,index)=>(
-
-
-<motion.span
-
-
-key={index}
-
-
-animate={{
-
-
-opacity:[
-
-.2,
-
-.9,
-
-.2
-
-],
-
-
-scale:[
-
-1,
-
-1.4,
-
-1
-
-]
-
-
-}}
-
-
-
-transition={{
-
-
-duration:star.duration,
-
-delay:star.delay,
-
-repeat:Infinity
-
-
-}}
-
-
-
-style={{
-
-
-left:`${star.x}%`,
-
-top:`${star.y}%`,
-
-width:`${star.size}px`,
-
-height:`${star.size}px`
-
-
-}}
-
-
-
-className="
-absolute
-rounded-full
-bg-white
-shadow-[0_0_12px_rgba(255,255,255,.8)]
-"
-
-
-/>
-
-
-))
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-{/* ENERGY BEAM */}
-
-
-
-<motion.div
-
-
-animate={{
-
-
-x:[
-
-"-40%",
-
-"140%"
-
-],
-
-
-opacity:[
-
-0,
-
-1,
-
-0
-
-]
-
-
-}}
-
-
-
-transition={{
-
-
-duration:12,
-
-repeat:Infinity,
-
-ease:"easeInOut"
-
-
-}}
-
-
-
-className="
-absolute
-top-[35%]
-h-[2px]
-w-80
-rotate-12
-bg-gradient-to-r
-from-transparent
-via-cyan-300
-to-transparent
-blur-[1px]
-"
-
-
-/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/* VIGNETTE */}
-
-
-
-<div
-
-
-className="
-absolute
-inset-0
-bg-[radial-gradient(circle_at_center,transparent_20%,#01030b_100%)]
-"
-
-
-/>
-
-
-
-
-
-
-
-
-
-</div>
-
-
-)
+  );
 
 }
