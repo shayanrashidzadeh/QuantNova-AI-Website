@@ -5,13 +5,8 @@ import {
 
 
 import Navbar from "../components/layout/Navbar";
-
 import Hero from "../components/hero/Hero";
-
 import SpaceBackground from "../components/background/SpaceBackground";
-
-
-
 
 
 
@@ -54,50 +49,42 @@ const Footer = lazy(() =>
 
 
 
-
-
-
 function SectionLoader(){
 
 
-return(
+  return (
 
-<div
+    <div
 
-className="
-flex
-h-64
-items-center
-justify-center
-"
+      className="
+      flex
+      h-64
+      items-center
+      justify-center
+      "
 
->
+    >
+
+      <div
+
+        className="
+        h-9
+        w-9
+        animate-spin
+        rounded-full
+        border-2
+        border-cyan-300
+        border-t-transparent
+        "
+
+      />
 
 
-<div
+    </div>
 
-className="
-h-9
-w-9
-animate-spin
-rounded-full
-border-2
-border-cyan-300
-border-t-transparent
-"
-
-/>
-
-
-</div>
-
-)
+  );
 
 }
-
-
-
-
 
 
 
@@ -106,30 +93,25 @@ border-t-transparent
 
 
 function LazySection({
-
-children
-
+  children
 }:{
-
-children:React.ReactNode
-
+  children:React.ReactNode
 }){
 
 
-return(
+  return (
 
-<Suspense fallback={<SectionLoader />}>
+    <Suspense
+      fallback={<SectionLoader />}
+    >
 
-{children}
+      {children}
 
-</Suspense>
+    </Suspense>
 
-)
+  );
 
 }
-
-
-
 
 
 
@@ -141,142 +123,120 @@ return(
 export default function Home(){
 
 
+  return (
 
-return(
+    <main
 
+      className="
+      relative
+      min-h-screen
+      bg-[#020617]
+      "
 
-<main
+    >
 
 
-className="
-relative
-min-h-screen
-overflow-hidden
-bg-[#020617]
-"
 
->
+      <SpaceBackground />
 
 
 
-<SpaceBackground />
 
 
+      <div
 
+        className="
+        relative
+        z-10
+        "
 
+      >
 
 
 
-<div
+        <Navbar />
 
-className="
-relative
-z-10
-"
 
->
 
+        <Hero />
 
-<Navbar />
 
 
 
-<Hero />
+        <LazySection>
 
+          <Features />
 
+        </LazySection>
 
 
 
 
 
-<LazySection>
+        <LazySection>
 
-<Features />
+          <Performance />
 
-</LazySection>
+        </LazySection>
 
 
 
 
 
+        <LazySection>
 
-<LazySection>
+          <Extension />
 
-<Performance />
+        </LazySection>
 
-</LazySection>
 
 
 
 
+        <LazySection>
 
+          <About />
 
-<LazySection>
+        </LazySection>
 
-<Extension />
 
-</LazySection>
 
 
 
+        <LazySection>
 
+          <Pricing />
 
+        </LazySection>
 
-<LazySection>
 
-<About />
 
-</LazySection>
 
 
+        <LazySection>
 
+          <FAQ />
 
+        </LazySection>
 
 
-<LazySection>
 
-<Pricing />
 
-</LazySection>
 
+        <LazySection>
 
+          <Footer />
 
+        </LazySection>
 
 
 
-<LazySection>
+      </div>
 
-<FAQ />
 
-</LazySection>
 
+    </main>
 
-
-
-
-
-<LazySection>
-
-<Footer />
-
-</LazySection>
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-</main>
-
-
-)
+  );
 
 }
