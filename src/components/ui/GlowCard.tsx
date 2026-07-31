@@ -1,5 +1,4 @@
-import { ReactNode, useState } from "react";
-import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 
 interface GlowCardProps {
   children: ReactNode;
@@ -10,47 +9,87 @@ export default function GlowCard({
   children,
   className = "",
 }: GlowCardProps) {
-  const [mouse, setMouse] = useState({
-    x: 50,
-    y: 50,
-  });
-
   return (
-    <motion.div
-      whileHover={{
-        y: -8,
-        scale: 1.02,
-      }}
-      transition={{
-        type: "spring",
-        stiffness: 250,
-        damping: 18,
-      }}
-      onMouseMove={(e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-
-        setMouse({
-          x: ((e.clientX - rect.left) / rect.width) * 100,
-          y: ((e.clientY - rect.top) / rect.height) * 100,
-        });
-      }}
-      className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-8 transition-all duration-300 ${className}`}
+    <div
+      className={`
+        group
+        relative
+        overflow-hidden
+        rounded-3xl
+        border
+        border-white/10
+        bg-white/[0.035]
+        p-6
+        shadow-[0_16px_45px_rgba(0,0,0,.28)]
+        transition-[transform,border-color,background-color,box-shadow]
+        duration-300
+        md:p-8
+        md:hover:-translate-y-1
+        md:hover:border-cyan-300/25
+        md:hover:bg-white/[0.05]
+        md:hover:shadow-[0_22px_65px_rgba(0,0,0,.34)]
+        ${className}
+      `}
     >
-      {/* Mouse Glow */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          background: `radial-gradient(circle at ${mouse.x}% ${mouse.y}%,
-          rgba(34,211,238,.20),
-          transparent 45%)`,
-        }}
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          inset-x-6
+          top-0
+          h-px
+          bg-gradient-to-r
+          from-transparent
+          via-cyan-300/45
+          to-transparent
+          opacity-70
+        "
       />
 
-      {/* Border */}
-      <div className="pointer-events-none absolute inset-0 rounded-3xl border border-white/5" />
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          -right-16
+          -top-16
+          hidden
+          h-40
+          w-40
+          rounded-full
+          bg-cyan-400/10
+          opacity-0
+          blur-3xl
+          transition-opacity
+          duration-300
+          md:block
+          md:group-hover:opacity-100
+        "
+      />
 
-      {/* Content */}
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          -bottom-20
+          -left-20
+          hidden
+          h-44
+          w-44
+          rounded-full
+          bg-violet-500/10
+          opacity-0
+          blur-3xl
+          transition-opacity
+          duration-300
+          md:block
+          md:group-hover:opacity-100
+        "
+      />
+
       <div className="relative z-10">{children}</div>
-    </motion.div>
+    </div>
   );
 }
