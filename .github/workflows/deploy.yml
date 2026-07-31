@@ -8,13 +8,13 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: quantnova-production-deploy
+  group: quantnova-production-deployment
   cancel-in-progress: true
 
 jobs:
   deploy:
-    name: Deploy QuantNova AI to VPS
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Deploy to VPS
