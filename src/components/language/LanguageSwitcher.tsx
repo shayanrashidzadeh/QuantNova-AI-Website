@@ -1,11 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Globe2,
-  Check,
-  ChevronDown
-} from "lucide-react";
-
+import { useState, useEffect, useRef } from "react";
+import { Globe2, Check, ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 
@@ -22,13 +16,6 @@ const languages = [
   { code: "zh", name: "中文" },
   { code: "ja", name: "日本語" },
   { code: "ko", name: "한국어" },
-  { code: "hi", name: "हिन्दी" },
-  { code: "nl", name: "Nederlands" },
-  { code: "pl", name: "Polski" },
-  { code: "sv", name: "Svenska" },
-  { code: "id", name: "Indonesia" },
-  { code: "vi", name: "Tiếng Việt" },
-  { code: "uk", name: "Українська" },
   { code: "ar", name: "العربية" }
 ];
 
@@ -39,10 +26,11 @@ const rtlLanguages = [
 ];
 
 
-export default function LanguageSwitcher() {
+
+export default function LanguageSwitcher(){
 
 
-  const [open, setOpen] = useState(false);
+  const [open,setOpen] = useState(false);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -56,58 +44,57 @@ export default function LanguageSwitcher() {
 
   const current =
     languages.find(
-      lang => lang.code === currentCode
+      item => item.code === currentCode
     ) || languages[0];
 
 
 
 
-  useEffect(() => {
+
+  useEffect(()=>{
 
 
-    function handleClickOutside(
-      event: MouseEvent
-    ) {
+    const handleClick = (e:MouseEvent)=>{
 
-      if (
+
+      if(
         wrapperRef.current &&
         !wrapperRef.current.contains(
-          event.target as Node
+          e.target as Node
         )
-      ) {
+      ){
 
         setOpen(false);
 
       }
 
-    }
+
+    };
 
 
     document.addEventListener(
       "mousedown",
-      handleClickOutside
+      handleClick
     );
 
 
-    return () => {
+    return ()=>{
 
       document.removeEventListener(
         "mousedown",
-        handleClickOutside
+        handleClick
       );
 
     };
 
 
-  }, []);
+  },[]);
 
 
 
 
 
-  function changeLanguage(
-    code:string
-  ) {
+  function changeLanguage(code:string){
 
 
     i18n.changeLanguage(code);
@@ -119,19 +106,20 @@ export default function LanguageSwitcher() {
     );
 
 
+    document.documentElement.lang = code;
+
+
     document.documentElement.dir =
       rtlLanguages.includes(code)
-        ? "rtl"
-        : "ltr";
-
-
-    document.documentElement.lang = code;
+      ?
+      "rtl"
+      :
+      "ltr";
 
 
     setOpen(false);
 
   }
-
 
 
 
@@ -143,6 +131,7 @@ export default function LanguageSwitcher() {
       ref={wrapperRef}
       className="
       relative
+      z-[999999]
       "
     >
 
@@ -152,13 +141,7 @@ export default function LanguageSwitcher() {
 
         type="button"
 
-        onClick={() =>
-          setOpen(prev => !prev)
-        }
-
-
-        aria-label="Change language"
-
+        onClick={()=>setOpen(!open)}
 
         className="
         flex
@@ -168,12 +151,11 @@ export default function LanguageSwitcher() {
         justify-center
         rounded-full
         border
-        border-cyan-400/30
+        border-cyan-400/40
         bg-white/10
         text-cyan-300
-        shadow-[0_0_25px_rgba(34,211,238,.25)]
         transition
-        hover:bg-white/15
+        hover:bg-white/20
         "
       >
 
@@ -185,42 +167,11 @@ export default function LanguageSwitcher() {
 
 
 
+      {
+        open && (
 
 
-      <AnimatePresence>
-
-
-        {open && (
-
-          <motion.div
-
-
-            initial={{
-              opacity:0,
-              y:-8,
-              scale:.96
-            }}
-
-
-            animate={{
-              opacity:1,
-              y:0,
-              scale:1
-            }}
-
-
-            exit={{
-              opacity:0,
-              y:-8,
-              scale:.96
-            }}
-
-
-            transition={{
-              duration:.18
-            }}
-
-
+          <div
 
             className="
             absolute
@@ -230,11 +181,12 @@ export default function LanguageSwitcher() {
             w-72
             rounded-3xl
             border
-            border-white/15
-            bg-[#020617]/95
+            border-white/20
+            bg-[#020617]
             p-4
-            shadow-[0_25px_80px_rgba(0,0,0,.7)]
+            shadow-2xl
             "
+
           >
 
 
@@ -262,7 +214,7 @@ export default function LanguageSwitcher() {
               </span>
 
 
-              <div
+              <span
                 className="
                 flex
                 items-center
@@ -276,7 +228,7 @@ export default function LanguageSwitcher() {
 
                 <ChevronDown size={14}/>
 
-              </div>
+              </span>
 
 
             </div>
@@ -287,24 +239,21 @@ export default function LanguageSwitcher() {
 
             <div
               className="
-              max-h-[360px]
-              space-y-1
+              max-h-80
               overflow-y-auto
-              pr-1
+              space-y-1
               "
             >
 
               {
-                languages.map(lang => (
+                languages.map(lang=>(
+
 
                   <button
 
                     key={lang.code}
 
-                    onClick={() =>
-                      changeLanguage(lang.code)
-                    }
-
+                    onClick={()=>changeLanguage(lang.code)}
 
                     className="
                     flex
@@ -316,10 +265,10 @@ export default function LanguageSwitcher() {
                     py-3
                     text-sm
                     text-slate-300
-                    transition
                     hover:bg-cyan-400/10
                     hover:text-cyan-300
                     "
+
                   >
 
                     <span>
@@ -328,32 +277,32 @@ export default function LanguageSwitcher() {
 
 
                     {
-                      current.code === lang.code && (
-
+                      current.code === lang.code &&
+                      (
                         <Check
                           size={16}
                           className="text-cyan-300"
                         />
-
                       )
                     }
 
 
                   </button>
 
+
                 ))
               }
+
 
             </div>
 
 
-
-          </motion.div>
-
-        )}
+          </div>
 
 
-      </AnimatePresence>
+        )
+      }
+
 
 
     </div>
