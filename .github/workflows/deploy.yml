@@ -5,8 +5,15 @@ on:
     branches:
       - master
 
+  workflow_dispatch:
+
+concurrency:
+  group: quantnova-production-deploy
+  cancel-in-progress: true
+
 jobs:
   deploy:
+    name: Deploy QuantNova AI to VPS
     runs-on: ubuntu-latest
 
     steps:
@@ -16,11 +23,32 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 48291
+          timeout: 60s
+          command_timeout: 15m
+          script_stop: true
 
           script: |
+            set -e
+
+            echo "Starting QuantNova AI deployment..."
+
             cd /var/www/QuantNova-AI-Website
-            git pull origin master
-            npm install
+
+            git fetch origin master
+            git reset --hard origin/master
+
+            npm ci
             npm run build
+
+            mkdir -p /var/www/quantnova
             rm -rf /var/www/quantnova/*
-            cp -r dist/* /var/www/quantnova/
+            cp -r dist/. /var/www/quantnova/
+
+            chown -R www-data:www-data /var/www/quantnova
+            chmod -R 755 /var/www/quantnova
+
+            nginx -t
+            systemctl reload nginx
+
+            echo "QuantNova AI deployed successfully."
