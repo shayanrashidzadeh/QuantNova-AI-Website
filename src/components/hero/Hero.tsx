@@ -1,21 +1,10 @@
-import { useMemo } from "react";
-
 import { motion } from "framer-motion";
-
 import { useTranslation } from "react-i18next";
 
-
 import HeroBackground from "./HeroBackground";
-
 import HeroButtons from "./HeroButtons";
 
-
 import logo from "../../assets/logo/quantnova-logo.webp";
-
-
-
-
-
 
 
 
@@ -23,866 +12,429 @@ import logo from "../../assets/logo/quantnova-logo.webp";
 export default function Hero(){
 
 
-const {t}=useTranslation();
+  const {t}=useTranslation();
 
 
 
 
+  return (
 
+    <section
 
+      id="hero"
 
+      className="
+      relative
+      flex
+      min-h-[850px]
+      items-center
+      justify-center
+      overflow-hidden
+      pt-28
+      lg:min-h-screen
+      "
 
-const stars = useMemo(()=>{
+    >
 
 
-return Array.from({
 
-length:80
+      <HeroBackground />
 
-}).map(()=>({
 
 
-x:Math.random()*100,
 
 
-y:Math.random()*100,
 
+      <div
 
-duration:4+Math.random()*5,
+        className="
+        relative
+        z-20
+        flex
+        flex-col
+        items-center
+        px-6
+        text-center
+        "
 
+      >
 
-delay:Math.random()*5
 
 
-}));
 
 
-},[]);
 
+        {/* LOGO CORE */}
 
 
+        <motion.div
 
+          initial={{
 
+            opacity:0,
 
+            scale:.8
 
+          }}
 
 
-return(
+          animate={{
 
+            opacity:1,
 
-<section
+            scale:1
 
+          }}
 
-id="hero"
 
+          transition={{
 
-className="
-relative
-flex
-min-h-[850px]
-items-center
-justify-center
-overflow-hidden
-pt-28
-lg:min-h-screen
-"
+            duration:.8
 
+          }}
 
->
 
+          className="
+          relative
+          flex
+          items-center
+          justify-center
+          "
 
+        >
 
 
 
 
+          {/* DESKTOP RINGS */}
 
-<HeroBackground />
 
+          <div
 
+            className="
+            absolute
+            hidden
+            h-[340px]
+            w-[340px]
+            rounded-full
+            border
+            border-cyan-400/20
+            lg:block
+            "
 
+          />
 
 
 
+          <div
 
+            className="
+            absolute
+            hidden
+            h-[290px]
+            w-[290px]
+            rounded-full
+            border
+            border-violet-500/20
+            lg:block
+            "
 
+          />
 
-<div
 
 
-className="
-absolute
-inset-0
-z-0
-pointer-events-none
-"
 
 
->
 
+          {/* GLOW */}
 
-{
 
+          <div
 
-stars.map((star,index)=>(
+            className="
+            absolute
+            h-72
+            w-72
+            rounded-full
+            bg-cyan-400/20
+            blur-[70px]
+            "
 
+          />
 
-<motion.span
 
 
-key={index}
 
 
 
-animate={{
 
+          <motion.img
 
-opacity:[
 
-.2,
+            src={logo}
 
-.9,
 
-.2
+            alt="QuantNova AI"
 
-],
 
+            animate={{
 
-scale:[
+              y:[
+                0,
+                -8,
+                0
+              ]
 
-1,
+            }}
 
-1.5,
 
-1
+            transition={{
 
-]
+              duration:5,
 
+              repeat:Infinity,
 
-}}
+              ease:"easeInOut"
 
+            }}
 
 
-transition={{
 
+            className="
+            relative
+            h-52
+            w-52
+            object-contain
+            drop-shadow-[0_0_50px_rgba(34,211,238,.7)]
+            sm:h-60
+            sm:w-60
+            lg:h-64
+            lg:w-64
+            "
 
-duration:star.duration,
+          />
 
-delay:star.delay,
 
-repeat:Infinity
 
 
-}}
+        </motion.div>
 
 
 
-style={{
 
 
-left:`${star.x}%`,
 
-top:`${star.y}%`
 
 
-}}
+        <motion.h1
 
 
+          initial={{
 
-className="
-absolute
-h-[2px]
-w-[2px]
-rounded-full
-bg-white
-"
+            opacity:0,
 
+            y:25
 
-/>
+          }}
 
 
-))
 
+          animate={{
 
-}
+            opacity:1,
 
+            y:0
 
+          }}
 
-</div>
 
 
+          transition={{
 
+            delay:.3
 
+          }}
 
 
 
+          className="
+          mt-10
+          bg-gradient-to-r
+          from-white
+          via-cyan-300
+          to-violet-500
+          bg-clip-text
+          text-5xl
+          font-black
+          text-transparent
+          sm:text-6xl
+          lg:text-7xl
+          "
 
+        >
 
+          {t("hero.title")}
 
 
+        </motion.h1>
 
-<motion.div
 
 
-animate={{
 
 
-x:[
 
-"-20%",
 
-"120%"
+        <motion.p
 
-],
 
+          initial={{
 
-opacity:[
+            opacity:0
 
-0,
+          }}
 
-1,
 
-0
+          animate={{
 
-]
+            opacity:1
 
+          }}
 
-}}
 
+          transition={{
 
+            delay:.5
 
-transition={{
+          }}
 
 
-duration:4,
 
-repeat:Infinity,
+          className="
+          mt-4
+          text-sm
+          tracking-[0.5em]
+          text-cyan-300
+          "
 
-repeatDelay:8
+        >
 
+          {t("hero.creator","BY SHAYAN")}
 
-}}
 
+        </motion.p>
 
 
-className="
-absolute
-left-0
-top-32
-z-10
-h-[2px]
-w-60
-rotate-45
-bg-gradient-to-r
-from-transparent
-via-cyan-300
-to-transparent
-"
 
 
-/>
 
 
 
 
+        <motion.p
 
 
+          initial={{
 
+            opacity:0,
 
+            y:15
 
+          }}
 
 
+          animate={{
 
+            opacity:1,
 
+            y:0
 
+          }}
 
-<div
 
 
-className="
-relative
-z-20
-flex
-flex-col
-items-center
-px-6
-text-center
-"
+          transition={{
 
+            delay:.7
 
->
+          }}
 
 
 
+          className="
+          mt-6
+          max-w-xl
+          text-base
+          leading-8
+          text-slate-300
+          md:text-lg
+          "
 
+        >
 
+          {t("hero.subtitle")}
 
 
+        </motion.p>
 
 
-<motion.div
 
 
-initial={{
 
 
-opacity:0,
 
-scale:.6
 
 
-}}
+        <motion.div
 
 
+          initial={{
 
-animate={{
+            opacity:0,
 
+            y:15
 
-opacity:1,
+          }}
 
-scale:1
 
+          animate={{
 
-}}
+            opacity:1,
 
+            y:0
 
+          }}
 
-transition={{
 
 
-duration:1
+          transition={{
 
+            delay:1
 
-}}
+          }}
 
 
 
-className="
-relative
-flex
-items-center
-justify-center
-"
+          className="
+          mt-8
+          "
 
+        >
 
->
+          <HeroButtons />
 
 
+        </motion.div>
 
 
 
 
 
+      </div>
 
-<motion.div
 
 
-animate={{
+    </section>
 
-rotate:360
-
-}}
-
-
-
-transition={{
-
-
-duration:25,
-
-repeat:Infinity,
-
-ease:"linear"
-
-
-}}
-
-
-
-className="
-absolute
-h-[280px]
-w-[280px]
-rounded-full
-border
-border-cyan-400/30
-md:h-[350px]
-md:w-[350px]
-"
-
-
-/>
-
-
-
-
-
-
-
-
-
-<motion.div
-
-
-animate={{
-
-
-rotate:-360
-
-
-}}
-
-
-
-transition={{
-
-
-duration:35,
-
-repeat:Infinity,
-
-ease:"linear"
-
-
-}}
-
-
-
-className="
-absolute
-h-[240px]
-w-[240px]
-rounded-full
-border
-border-violet-500/30
-md:h-[310px]
-md:w-[310px]
-"
-
-
-/>
-
-
-
-
-
-
-
-
-
-<motion.div
-
-
-animate={{
-
-
-scale:[
-
-1,
-
-1.15,
-
-1
-
-],
-
-
-opacity:[
-
-.3,
-
-.6,
-
-.3
-
-]
-
-
-}}
-
-
-
-transition={{
-
-
-duration:5,
-
-repeat:Infinity
-
-
-}}
-
-
-
-className="
-absolute
-h-72
-w-72
-rounded-full
-bg-cyan-400/20
-blur-[110px]
-md:h-96
-md:w-96
-"
-
-
-/>
-
-
-
-
-
-
-
-
-
-<motion.img
-
-
-src={logo}
-
-
-alt="QuantNova AI"
-
-
-
-animate={{
-
-
-y:[
-
-0,
-
--12,
-
-0
-
-],
-
-
-scale:[
-
-1,
-
-1.05,
-
-1
-
-]
-
-
-}}
-
-
-
-transition={{
-
-
-duration:5,
-
-repeat:Infinity,
-
-ease:"easeInOut"
-
-
-}}
-
-
-
-className="
-relative
-h-56
-w-56
-object-contain
-drop-shadow-[0_0_90px_rgba(34,211,238,.9)]
-will-change-transform
-md:h-64
-md:w-64
-"
-
-
-/>
-
-
-
-
-
-
-
-
-
-</motion.div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<motion.h1
-
-
-initial={{
-
-
-opacity:0,
-
-y:35
-
-
-}}
-
-
-
-animate={{
-
-
-opacity:1,
-
-y:0
-
-
-}}
-
-
-
-transition={{
-
-
-delay:.5
-
-
-}}
-
-
-
-className="
-mt-10
-bg-gradient-to-r
-from-white
-via-cyan-300
-to-violet-500
-bg-clip-text
-text-5xl
-font-black
-text-transparent
-sm:text-6xl
-lg:text-7xl
-"
-
-
->
-
-
-{t("hero.title")}
-
-
-</motion.h1>
-
-
-
-
-
-
-
-
-
-<motion.p
-
-
-animate={{
-
-
-opacity:[
-
-.5,
-
-1,
-
-.5
-
-]
-
-
-}}
-
-
-
-transition={{
-
-
-duration:3,
-
-repeat:Infinity
-
-
-}}
-
-
-
-className="
-mt-4
-text-sm
-tracking-[0.5em]
-text-cyan-300
-"
-
-
->
-
-
-{t("hero.creator","BY SHAYAN")}
-
-
-</motion.p>
-
-
-
-
-
-
-
-
-
-<motion.p
-
-
-initial={{
-
-
-opacity:0,
-
-y:20
-
-
-}}
-
-
-
-animate={{
-
-
-opacity:1,
-
-y:0
-
-
-}}
-
-
-
-transition={{
-
-
-delay:1
-
-
-}}
-
-
-
-className="
-mt-6
-max-w-xl
-text-base
-leading-8
-text-slate-300
-md:text-lg
-"
-
-
->
-
-
-{t("hero.subtitle")}
-
-
-</motion.p>
-
-
-
-
-
-
-
-
-
-<motion.div
-
-
-initial={{
-
-
-opacity:0,
-
-y:20
-
-
-}}
-
-
-
-animate={{
-
-
-opacity:1,
-
-y:0
-
-
-}}
-
-
-
-transition={{
-
-
-delay:1.4
-
-
-}}
-
-
-
-className="
-mt-8
-"
-
-
->
-
-
-<HeroButtons />
-
-
-</motion.div>
-
-
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-</section>
-
-
-)
+  );
 
 }
