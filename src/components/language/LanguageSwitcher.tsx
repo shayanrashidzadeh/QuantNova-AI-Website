@@ -4,19 +4,19 @@ import { useTranslation } from "react-i18next";
 
 
 const languages = [
-  { code: "en", name: "English" },
-  { code: "fa", name: "فارسی" },
-  { code: "tr", name: "Türkçe" },
-  { code: "de", name: "Deutsch" },
-  { code: "fr", name: "Français" },
-  { code: "es", name: "Español" },
-  { code: "it", name: "Italiano" },
-  { code: "pt", name: "Português" },
-  { code: "ru", name: "Русский" },
-  { code: "zh", name: "中文" },
-  { code: "ja", name: "日本語" },
-  { code: "ko", name: "한국어" },
-  { code: "ar", name: "العربية" }
+  { code:"en", name:"English" },
+  { code:"fa", name:"فارسی" },
+  { code:"tr", name:"Türkçe" },
+  { code:"de", name:"Deutsch" },
+  { code:"fr", name:"Français" },
+  { code:"es", name:"Español" },
+  { code:"it", name:"Italiano" },
+  { code:"pt", name:"Português" },
+  { code:"ru", name:"Русский" },
+  { code:"zh", name:"中文" },
+  { code:"ja", name:"日本語" },
+  { code:"ko", name:"한국어" },
+  { code:"ar", name:"العربية" }
 ];
 
 
@@ -27,14 +27,19 @@ const rtlLanguages = [
 
 
 
+
 export default function LanguageSwitcher(){
 
 
   const [open,setOpen] = useState(false);
 
-  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const { i18n } = useTranslation();
+  const ref = useRef<HTMLDivElement>(null);
+
+
+  const {i18n} = useTranslation();
+
+
 
 
 
@@ -42,10 +47,16 @@ export default function LanguageSwitcher(){
     i18n.language?.split("-")[0] || "en";
 
 
+
   const current =
     languages.find(
-      item => item.code === currentCode
-    ) || languages[0];
+      item=>item.code===currentCode
+    )
+    ||
+    languages[0];
+
+
+
 
 
 
@@ -54,12 +65,12 @@ export default function LanguageSwitcher(){
   useEffect(()=>{
 
 
-    const handleClick = (e:MouseEvent)=>{
+    function close(e:MouseEvent){
 
 
       if(
-        wrapperRef.current &&
-        !wrapperRef.current.contains(
+        ref.current &&
+        !ref.current.contains(
           e.target as Node
         )
       ){
@@ -69,12 +80,12 @@ export default function LanguageSwitcher(){
       }
 
 
-    };
+    }
 
 
     document.addEventListener(
       "mousedown",
-      handleClick
+      close
     );
 
 
@@ -82,7 +93,7 @@ export default function LanguageSwitcher(){
 
       document.removeEventListener(
         "mousedown",
-        handleClick
+        close
       );
 
     };
@@ -94,7 +105,9 @@ export default function LanguageSwitcher(){
 
 
 
-  function changeLanguage(code:string){
+
+
+  const changeLanguage=(code:string)=>{
 
 
     i18n.changeLanguage(code);
@@ -119,7 +132,10 @@ export default function LanguageSwitcher(){
 
     setOpen(false);
 
-  }
+  };
+
+
+
 
 
 
@@ -128,11 +144,13 @@ export default function LanguageSwitcher(){
   return (
 
     <div
-      ref={wrapperRef}
+
+      ref={ref}
+
       className="
       relative
-      z-[999999]
       "
+
     >
 
 
@@ -141,9 +159,10 @@ export default function LanguageSwitcher(){
 
         type="button"
 
-        onClick={()=>setOpen(!open)}
+        onClick={()=>setOpen(value=>!value)}
 
         className="
+        relative
         flex
         h-11
         w-11
@@ -151,17 +170,22 @@ export default function LanguageSwitcher(){
         justify-center
         rounded-full
         border
-        border-cyan-400/40
+        border-cyan-400/30
         bg-white/10
         text-cyan-300
+        backdrop-blur-xl
         transition
         hover:bg-white/20
         "
+
       >
 
         <Globe2 size={20}/>
 
       </button>
+
+
+
 
 
 
@@ -177,21 +201,26 @@ export default function LanguageSwitcher(){
             absolute
             right-0
             top-14
-            z-[999999]
-            w-72
+            z-[100000]
+            w-[280px]
+            max-w-[90vw]
             rounded-3xl
             border
-            border-white/20
-            bg-[#020617]
+            border-white/15
+            bg-[#020617]/95
             p-4
-            shadow-2xl
+            shadow-[0_30px_100px_rgba(0,0,0,.8)]
+            backdrop-blur-3xl
             "
 
           >
 
 
 
+
+
             <div
+
               className="
               mb-3
               flex
@@ -201,20 +230,26 @@ export default function LanguageSwitcher(){
               border-white/10
               pb-3
               "
+
             >
 
+
               <span
+
                 className="
                 text-sm
                 font-bold
                 text-white
                 "
+
               >
                 Language
               </span>
 
 
+
               <span
+
                 className="
                 flex
                 items-center
@@ -222,6 +257,7 @@ export default function LanguageSwitcher(){
                 text-xs
                 text-cyan-300
                 "
+
               >
 
                 {current.name}
@@ -231,19 +267,27 @@ export default function LanguageSwitcher(){
               </span>
 
 
+
             </div>
 
 
 
 
 
+
+
+
+
             <div
+
               className="
-              max-h-80
+              max-h-72
               overflow-y-auto
               space-y-1
               "
+
             >
+
 
               {
                 languages.map(lang=>(
@@ -251,9 +295,15 @@ export default function LanguageSwitcher(){
 
                   <button
 
+
                     key={lang.code}
 
+
+                    type="button"
+
+
                     onClick={()=>changeLanguage(lang.code)}
+
 
                     className="
                     flex
@@ -265,26 +315,28 @@ export default function LanguageSwitcher(){
                     py-3
                     text-sm
                     text-slate-300
+                    transition
                     hover:bg-cyan-400/10
                     hover:text-cyan-300
                     "
 
                   >
 
+
                     <span>
                       {lang.name}
                     </span>
 
 
+
                     {
-                      current.code === lang.code &&
-                      (
-                        <Check
-                          size={16}
-                          className="text-cyan-300"
-                        />
-                      )
+                      current.code===lang.code &&
+                      <Check
+                        size={16}
+                        className="text-cyan-300"
+                      />
                     }
+
 
 
                   </button>
@@ -294,7 +346,10 @@ export default function LanguageSwitcher(){
               }
 
 
+
             </div>
+
+
 
 
           </div>
@@ -302,6 +357,7 @@ export default function LanguageSwitcher(){
 
         )
       }
+
 
 
 
